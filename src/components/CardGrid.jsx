@@ -7,7 +7,7 @@ import { GlobalContext } from "@/context/GlobalContext";
 import getTopGainersLosers from "@/libs/getTopGainersLosers";
 
 export default function CardGrid(){
-  const { gainSelected, setGainSelected, gainLoseData, setGainLoseData } = useContext(GlobalContext);
+  const { gainSelected, setGainSelected, gainLoseData, setGainLoseData, price, setPrice, changePercentage, setChangePercentage, isDeltaPositive, setIsDeltaPositive } = useContext(GlobalContext);
   
   async function extractTopGainerLosers(){
     const res = await getTopGainersLosers();
@@ -24,6 +24,9 @@ export default function CardGrid(){
       {
       gainSelected ?
       gainLoseData.top_gainers?.map(gainer => {
+        setPrice(gainer.price)
+        setChangePercentage(gainer.change_percentage)
+        setIsDeltaPositive(true)
         return(
           <Link className="w-5/12 lg:w-3/12" href={`/${gainer.ticker}`}>
             <Card key={gainer.ticker} type="gain" ticker={gainer.ticker} price={gainer.price} change={gainer.change_percentage}/>
@@ -31,6 +34,9 @@ export default function CardGrid(){
         )
       }) :
       gainLoseData.top_losers?.map(loser =>{
+        setPrice(loser.price)
+        setChangePercentage(loser.change_percentage)
+        setIsDeltaPositive(false)
         return(
           <Link className="w-5/12 lg:w-3/12" href={`/${loser.ticker}`}>
             <Card key={loser.ticker} type={"loss"} ticker={loser.ticker} price={loser.price} change={loser.change_percentage}/>
