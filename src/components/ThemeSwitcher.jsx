@@ -22,9 +22,9 @@ export const ThemeSwitcher = () => {
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
     >
       {theme === "light" ? (
-        <BsToggleOff className="h-10 w-10 mx-auto text-cyan-500 hover:scale-105 duration-200 transition-all" />
+        <BsToggleOff className="h-10 w-10 mx-auto text-slate-100 duration-200 transition-all" />
       ) : (
-        <BsToggleOn className="h-10 w-10 mx-auto text-cyan-400 hover:scale-105 duration-200 transition-all" />
+        <BsToggleOn className="h-10 w-10 mx-auto text-cyan-500 duration-200 transition-all" />
       )}
     </button>
   );
