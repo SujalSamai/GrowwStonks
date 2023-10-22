@@ -25,14 +25,14 @@ export default function CardGrid(){
       gainSelected ?
       gainLoseData.top_gainers?.map(gainer => {
         return(
-          <Link className="w-3/12" href={`/${gainer.ticker}`}>
+          <Link className="w-5/12 lg:w-3/12" href={`/${gainer.ticker}`}>
             <Card key={gainer.ticker} type="gain" ticker={gainer.ticker} price={gainer.price} change={gainer.change_percentage}/>
           </Link>
         )
       }) :
       gainLoseData.top_losers?.map(loser =>{
         return(
-          <Link className="w-3/12" href={`/${loser.ticker}`}>
+          <Link className="w-5/12 lg:w-3/12" href={`/${loser.ticker}`}>
             <Card key={loser.ticker} type={"loss"} ticker={loser.ticker} price={loser.price} change={loser.change_percentage}/>
           </Link>
         )
