@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import logo from "../../public/logo.svg";
 import { ThemeSwitcher } from "../components/ThemeSwitcher";
+import SearchBox from "./SearchBox";
 
 export default function Navbar() {
   return (
@@ -13,21 +14,13 @@ export default function Navbar() {
           GrowwStonks
         </h1>
       </div>
-      <div className="hidden lg:w-3/6 lg:flex items-center">
-        <input
-              type="search"
-              placeholder="Search Stocks and ETFs"
-              className="w-full p-2 rounded-lg focus:outline-none"
-            ></input>
+      <div className="hidden lg:flex items-center w-6/12">
+        <SearchBox/>
       </div>
       <ThemeSwitcher />
       </div>
-      <div className="flex w-full lg:hidden items-center mt-3">
-        <input
-              type="search"
-              placeholder="Search Stocks and ETFs"
-              className="w-full p-2 rounded-lg focus:outline-none"
-            ></input>
+      <div className="block lg:hidden w-full mt-2">
+        <SearchBox/>
       </div>
     </nav>
   );

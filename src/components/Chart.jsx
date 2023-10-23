@@ -22,24 +22,30 @@ ChartJS.register(
 import { Line } from "react-chartjs-2";
 import getDailyPrice from "@/libs/getDailyPrice";
 import { useEffect, useState } from "react";
+import Error from "@/components/Error";
 
 export default function Chart({ ticker }) {
   const [priceData, setPriceData] = useState([]);
+  const [error, setError] = useState(false)
   async function getPriceData(ticker) {
     const rawData = await getDailyPrice(ticker);
-    const res = rawData["Time Series (5min)"];
-    // console.log(res)
-    const series = Object.keys(res)
+    if(!rawData.metadata){
+      setError(true)
+    }else{
+      setError(false)
+      const res = rawData["Time Series (5min)"];
+      const series = Object.keys(res)
       .reverse()
       .map((timestamp) => {
         return { timestamp, value: res[timestamp]["2. high"] };
       });
-    setPriceData(series);
+      setPriceData(series);
+    }
   }
 
-  useEffect((ticker) => {
+  useEffect(() => {
     getPriceData(ticker);
-  }, [ticker]);
+  }, []);
 
   const labels = [];
   const data = [];
@@ -70,7 +76,10 @@ export default function Chart({ ticker }) {
 
   return (
     <div>
-      <Line className=" bg-whitish" data={state} />
+      {
+        error ? <Error desc="No data available"/> :  <Line className=" bg-whitish" data={state} />
+      }
+     
     </div>
   );
 }

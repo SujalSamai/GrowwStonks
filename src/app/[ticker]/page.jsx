@@ -9,12 +9,18 @@ import { AiFillCaretUp } from "react-icons/ai"
 import {AiFillCaretDown} from "react-icons/ai"
 
 export default function CompanyInfo({params: {ticker}}){
-  const { gainSelected, setGainSelected, gainLoseData, setGainLoseData, price, setPrice, changePercentage, setChangePercentage, isDeltaPositive, setIsDeltaPositive } = useContext(GlobalContext);
-  const [companyData, setCompanyData] = useState([])
+  const { price, changePercentage, isDeltaPositive, companyData, setCompanyData } = useContext(GlobalContext);
+  
+  const [error, setError] = useState(false)
 
   async function getCompanyOverview(ticker) {
     const res = await getOverview(ticker);
-    setCompanyData(res);
+    if(res!==undefined){
+        setCompanyData(res)
+      
+    }else{
+      setError(true)
+    }
   }
 
   useEffect(() => {
@@ -23,6 +29,13 @@ export default function CompanyInfo({params: {ticker}}){
 
   return(
     <main className="w-10/12 lg:w-9/12 mx-auto flex flex-col gap-10 my-10 text-white">
+      {
+        error ? 
+        <div className="text-3xl">
+          <Error desc="Try Again Later!"/>
+        </div>
+        :
+      companyData.length>1 && <>
       <div className="flex justify-between text-black dark:text-white">
         <div className="flex flex-col gap-2 w-8/12">
           <h2 className="text-2xl font-semibold">{companyData.Name}</h2>
@@ -33,7 +46,7 @@ export default function CompanyInfo({params: {ticker}}){
           <h3 className="text-lg font-semibold">${price}</h3>
           <p className={`${isDeltaPositive ? "text-green-500" : "text-red-500"} flex items-center gap-1`}>
             {
-              isDeltaPositive ? "+" : "-"
+              isDeltaPositive ? "+" : ""
             }{changePercentage}{isDeltaPositive ? <AiFillCaretUp className="h-5 w-5"/>: <AiFillCaretDown className="h-5 w-5"/>}
           </p>
         </div>
@@ -59,7 +72,7 @@ export default function CompanyInfo({params: {ticker}}){
           <Tile heading="Profit Margin" data={companyData.ProfitMargin}/>
         </div>
       </div>
-      
+    </>}
     </main>
   )
 }
