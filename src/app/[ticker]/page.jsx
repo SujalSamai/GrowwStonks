@@ -7,6 +7,8 @@ import { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "@/context/GlobalContext";
 import { AiFillCaretUp } from "react-icons/ai"
 import {AiFillCaretDown} from "react-icons/ai"
+import Image from "next/image";
+import errorImg from "../../../public/error.svg"
 
 export default function CompanyInfo({params: {ticker}}){
   const { price, changePercentage, isDeltaPositive, companyData, setCompanyData } = useContext(GlobalContext);
@@ -15,11 +17,10 @@ export default function CompanyInfo({params: {ticker}}){
 
   async function getCompanyOverview(ticker) {
     const res = await getOverview(ticker);
-    if(res!==undefined){
-        setCompanyData(res)
-      
-    }else{
+    if(res===undefined){
       setError(true)
+    }else{
+      setCompanyData(res)
     }
   }
 
@@ -27,15 +28,16 @@ export default function CompanyInfo({params: {ticker}}){
     getCompanyOverview(ticker);
   }, []);
 
+
   return(
     <main className="w-10/12 lg:w-9/12 mx-auto flex flex-col gap-10 my-10 text-white">
       {
         error ? 
-        <div className="text-3xl">
+        <div className="text-3xl flex flex-col items-center gap-5">
+          <Image src={errorImg} width={300} height={300}/>
           <Error desc="Try Again Later!"/>
         </div>
-        :
-      companyData.length>1 && <>
+        : <>
       <div className="flex justify-between text-black dark:text-white">
         <div className="flex flex-col gap-2 w-8/12">
           <h2 className="text-2xl font-semibold">{companyData.Name}</h2>

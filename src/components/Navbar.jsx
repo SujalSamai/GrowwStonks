@@ -6,7 +6,7 @@ import SearchBox from "./SearchBox";
 
 export default function Navbar() {
   return (
-    <nav className="flex flex-col lg:flex-row items-center justify-between px-5 md:px-8 py-3 text-white bg-stone-900 dark:bg-purplish rounded-lg mx-4 my-2 shadow-md">
+    <nav className="flex flex-col lg:flex-row items-center justify-between px-5 md:px-8 py-3 text-white bg-stone-900/80 dark:bg-purplish/50 shadow-md">
       <div className="flex justify-between w-full">
       <div className="flex items-center">
         <Image src={logo} width={60} height={60} />
@@ -19,7 +19,7 @@ export default function Navbar() {
       </div>
       <ThemeSwitcher />
       </div>
-      <div className="block lg:hidden w-full mt-2">
+      <div className="block lg:hidden w-full mt-3">
         <SearchBox/>
       </div>
     </nav>
