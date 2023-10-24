@@ -51,26 +51,35 @@ a search bar.
 - Not able to find a solution to cache the data coming from API for a fixed period of time.
 
 ## Sample Images
-- Landing Page with Top Gainers and Top Losers
+### Landing Page with Top Gainers and Top Losers
+
 ![image](https://github.com/SujalSamai/GrowwStonks/assets/87236576/d530acb8-0a9a-489d-a318-5bce6fb21263)
 ![image](https://github.com/SujalSamai/GrowwStonks/assets/87236576/dfd8cd8a-2022-469f-946e-86d78c204602)
 ![image](https://github.com/SujalSamai/GrowwStonks/assets/87236576/56176e4c-e76a-4714-a38e-b8868bfa3ae9)
 ![image](https://github.com/SujalSamai/GrowwStonks/assets/87236576/402b5883-da0f-40ca-92dc-b10c34712858)
 
-- Product Page with Chart & Other Information
+
+### Product Page with Chart & Other Information
+
 ![image](https://github.com/SujalSamai/GrowwStonks/assets/87236576/c93506ba-d96a-4b00-84f5-0761c6a68ad5)
 ![image](https://github.com/SujalSamai/GrowwStonks/assets/87236576/d0014706-bdea-4d98-86ea-380dce33f862)
 
-- Responsive UI
+
+### Responsive UI
+
 ![image](https://github.com/SujalSamai/GrowwStonks/assets/87236576/3c22b802-9d04-4393-8ced-1b7036cbeade)
 ![image](https://github.com/SujalSamai/GrowwStonks/assets/87236576/f96f9843-bac5-4017-83e2-b5c7808ba822)
 ![image](https://github.com/SujalSamai/GrowwStonks/assets/87236576/b58eaef7-fdfe-4ac3-9fd7-32b94d51e2f9)
 
-- Search Functionality
+
+### Search Functionality
+
 ![image](https://github.com/SujalSamai/GrowwStonks/assets/87236576/f1dd1e3f-916a-453b-976c-efc38748de06)
 ![image](https://github.com/SujalSamai/GrowwStonks/assets/87236576/9f7f88c8-1786-43c3-8db8-9f7bbdf648af)
 
-- Error Handling
+
+### Error Handling
+
 ![image](https://github.com/SujalSamai/GrowwStonks/assets/87236576/86ecedb6-a3e0-4b33-b0b4-969cec7a12a0)
 
 
