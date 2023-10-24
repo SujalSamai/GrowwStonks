@@ -16,7 +16,9 @@ export default function CardGrid(){
 
   async function extractTopGainerLosers(){
     const res = await getTopGainersLosers();
-    if(res!==undefined && res.length>1){
+    console.log(res)
+    const len = Object.keys(res).length
+    if(res!==undefined && len>1){
       setGainLoseData(res)
     }else{
       setError(true)
@@ -26,6 +28,7 @@ export default function CardGrid(){
   useEffect(()=>{
     extractTopGainerLosers();
   },[]);
+
 
   const router = useRouter()
   function handleLink(e, path, price, change, isPositive){
@@ -39,9 +42,8 @@ export default function CardGrid(){
   const renderGainers = () => {
     return gainLoseData.top_gainers?.map((gainer) => {
       return (
-        <Link className="w-5/12 lg:w-3/12" href="" onClick={(e) => handleLink(e, `/${gainer.ticker}`, gainer.price, gainer.change_percentage, true)}>
+        <Link key={gainer.ticker} className="w-5/12 lg:w-3/12" href="" onClick={(e) => handleLink(e, `/${gainer.ticker}`, gainer.price, gainer.change_percentage, true)}>
           <Card
-            key={gainer.ticker}
             type="gain"
             ticker={gainer.ticker}
             price={gainer.price}
@@ -56,9 +58,9 @@ export default function CardGrid(){
   const renderLosers = () => {
     return gainLoseData.top_losers?.map((loser) => {
       return (
-        <Link onClick={(e) => handleLink(e, `/${loser.ticker}`, loser.price, loser.change_percentage, false)} href="" className="w-5/12 lg:w-3/12">
+        <Link key={loser.ticker} onClick={(e) => handleLink(e, `/${loser.ticker}`, loser.price, loser.change_percentage, false)} href="" className="w-5/12 lg:w-3/12">
           <Card
-            key={loser.ticker}
+            
             type={"loss"}
             ticker={loser.ticker}
             price={loser.price}

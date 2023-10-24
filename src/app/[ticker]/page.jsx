@@ -17,7 +17,8 @@ export default function CompanyInfo({params: {ticker}}){
 
   async function getCompanyOverview(ticker) {
     const res = await getOverview(ticker);
-    if(res===undefined){
+    const len = Object.keys(res).length
+    if(res===undefined || len<2){
       setError(true)
     }else{
       setCompanyData(res)
@@ -40,8 +41,8 @@ export default function CompanyInfo({params: {ticker}}){
         : <>
       <div className="flex justify-between text-black dark:text-white">
         <div className="flex flex-col gap-2 w-8/12">
-          <h2 className="text-2xl font-semibold">{companyData.Name}</h2>
-          <h3>{companyData.Symbol+","} {companyData.AssetType}</h3>
+          <h2 className="text-2xl font-semibold">{companyData.Name===undefined ? "Please try again!" : companyData.Name}</h2>
+          <h3>{companyData.Symbol && (companyData.Symbol+","+companyData.AssetType)}</h3>
           <p>{companyData.Exchange}</p>
         </div>
         <div className="flex flex-col gap-2 my-3 items-end" >
